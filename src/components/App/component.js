@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import bugicon from './bug-solid.svg';
 import './App.css';
-import './bootstrap.min.css';
 import ProfileCard from '../ProfileCard';
+import Home from '../Home';
 import { Col, Jumbotron, Button, Row, Container } from 'reactstrap';
 
 class App extends Component {
@@ -13,16 +13,7 @@ class App extends Component {
         <Jumbotron>
           <img width="50px" src={bugicon} className="App-logo" alt="logo" />
         </Jumbotron>
-        <Container>
-          <Row>
-            <Col xs="3">.col-3</Col>
-            <Col xs="6">
-              <ProfileCard />
-            </Col>
-            <Col xs="3">.col-3</Col>
-          </Row>
-          <Button size="lg">Launch</Button>
-        </Container>
+        <Home />
       </div>
     );
   }
