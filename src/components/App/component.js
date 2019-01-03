@@ -9,9 +9,11 @@ import { Col, Jumbotron, Button, Row, Container } from 'reactstrap';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Jumbotron>
-          <img width="50px" src={bugicon} className="App-logo" alt="logo" />
+          <div>
+            <img width="50px" src={bugicon} className="App-logo" alt="logo" />
+          </div>
         </Jumbotron>
         <Home />
       </div>
