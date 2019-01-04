@@ -13,7 +13,10 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import bugicon from './bug-solid.svg';
 import 'typeface-roboto';
+import './Home.css';
+
 
 
 const styles = theme => ({
@@ -70,43 +73,13 @@ const tiers = [
     subheader: 'My Work',
     description: ['Git Stuff'],
     buttonText: 'See it',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'LinkedIn',
-    subheader: 'My Jobs',
-    description: [
-      'LinkedIn Stuff'
-    ],
-    buttonText: 'Connect',
     buttonVariant: 'contained',
-  },
-  {
-    title: 'Resume',
-    subheader: 'My Experience',
-    description: [
-     'Resume Stuff'
-    ],
-    buttonText: 'Read it',
-    buttonVariant: 'outlined',
   },
 ];
 const footers = [
   {
-    title: 'Company',
+    title: 'Links',
     description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
   },
 ];
 
@@ -119,14 +92,10 @@ function Home(props) {
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+              <img width="25px" src={bugicon} alt="logo" className="bug-icon"/>
             Pierce Lauring
           </Typography>
-          <Button>GitHub</Button>
-          <Button>LinkedIn</Button>
-          <Button>Resume</Button>
-          <Button color="primary" variant="outlined">
-            Login
-          </Button>
+          <Button color="primary" variant="text">GitHub</Button>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
@@ -136,11 +105,11 @@ function Home(props) {
             Home
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
-           Layout to build Resume Website
+            Layout to build Resume Website
           </Typography>
         </div>
         {/* End hero unit */}
-        <Grid container spacing={40} alignItems="flex-end">
+        <Grid container spacing={40} alignItems="flex-start" contentAlign="center" className="card-box">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
