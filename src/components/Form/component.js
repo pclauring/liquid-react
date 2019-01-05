@@ -9,7 +9,15 @@ class Form extends Component {
 	handleSubmit = (event) => {
   	event.preventDefault();
     //console.log("Event: Submit ", this.state.userName);
-    axios.get(`https://api.github.com/users/${this.state.userName}`)
+    // axios.get(`https://api.github.com/users/${this.state.userName}`)
+   
+    // axios.get(` https://pokeapi.co/api/v2/pokemon/ditto`, {
+    //   headers: { 
+    //   'Access-Control-Allow-Origin' : '*',
+    //   },
+    // responseType: 'json',
+    //  })
+     axios.get(` https://pokeapi.co/api/v2/pokemon/ditto`)
     .then(resp => {
     console.log(resp);
     // this.props.onSubmit(resp.data);
