@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 
 class Form extends Component {
   state = { userName: '' }
@@ -17,11 +19,11 @@ class Form extends Component {
 	render () {
   	return (
     		<form onSubmit={this.handleSubmit}>
-  		  <input type="text" 
+  		  <Input type="text" 
         			// ref={(input) => this.userNameInput = input}
                onChange={(event) => this.setState({ userName: event.target.value})}
         			 placeholder="Github Username" />
-  		    <button type="submit">Add Card</button>
+  		    <Button type="submit">Add Card</Button>
   		  </form>
     )};
 };
