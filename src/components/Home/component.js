@@ -14,6 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import bugicon from './bug-solid.svg';
+import PokemonGenerator from '../PokemonGenerator';
 import 'typeface-roboto';
 import './Home.css';
 
@@ -107,6 +108,7 @@ function Home(props) {
           <Typography variant="h6" align="center" color="textSecondary" component="p">
             Layout to build Resume Website
           </Typography>
+        <PokemonGenerator />
         </div>
         {/* End hero unit */}
         <Grid container spacing={40} alignItems="flex-start" contentalign="center" className="card-box">

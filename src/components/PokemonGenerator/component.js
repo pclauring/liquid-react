@@ -39,7 +39,7 @@ class Form extends Component {
 const Card = (props) => {
 	return (
   	<div>
-  	  <img width ="75" src={props.sprites.front_default}/>
+  	  <img width ="75" src={props.sprites.front_default} alt={props.name} />
       <div style={{display: 'inline-block', marginLeft: 10}}>
         <div  style={{fontSize: '1.25em', fontWeight: 'bold'}}>{props.name}</div>
       <div>{props.weight}</div>
