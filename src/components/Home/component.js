@@ -103,14 +103,15 @@ function Home(props) {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Home
+            Pokemon
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
-            Layout to build Resume Website
+           Enter a Pokemon Name
           </Typography>
-        <PokemonGenerator />
+        
         </div>
         {/* End hero unit */}
+        <PokemonGenerator />
         <Grid container spacing={40} alignItems="flex-start" contentalign="center" className="card-box">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
