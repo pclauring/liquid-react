@@ -10,3 +10,13 @@
   .card-list{
     justify-content: center;
   }
+
+  .sprite-container{
+    justify-content: center;
+  }
+
+  .sprite-img{
+    display:inline-block;
+    margin:20px;
+    padding:5px;
+  }

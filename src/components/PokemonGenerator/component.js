@@ -88,9 +88,11 @@ const PokemonCard = (props) => {
             <Typography variant="subtitle1" align="center">
               {props.name}
             </Typography>
-            <img width="75px" src={props.sprites.front_default} alt="sprite front" />
+            <div className="sprite-container">
+            <img width="75px" src={props.sprites.front_default} alt="sprite front" className="sprite-img" />
             <img width="75px" src={props.sprites.back_default} alt="sprite back" />
             <img width="75px" src={props.sprites.front_shiny} alt="sprite front shiny" />
+            </div>
             <Typography align="center">Weight: {props.weight}</Typography>
             <Radar data={data} />
           </CardContent>
