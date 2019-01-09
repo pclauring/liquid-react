@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
@@ -12,24 +11,30 @@ import Typography from '@material-ui/core/Typography';
 import { Radar } from 'react-chartjs-2';
 import './PokemonGenerator.css';
 
+//Pokemon Api Wrapper https://github.com/PokeAPI/pokeapi-js-wrapper
+const Pokedex = require('pokeapi-js-wrapper');
+
+const options = {
+  protocol: 'https',
+  hostName: 'pokeapi.co',
+  versionPath: '/api/v2/',
+  cache: true,
+  timeout: 5 * 1000 // 5s
+}
+
+const P = new Pokedex.Pokedex(options);
+
 class Form extends Component {
-  state = { userName: '' }
+
+
+  state = { pokemonName: '' }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    //console.log("Event: Submit ", this.state.userName);
-    // axios.get(`https://api.github.com/users/${this.state.userName}`)
-
-    // axios.get(` https://pokeapi.co/api/v2/pokemon/ditto`, {
-    //   headers: { 
-    //   'Access-Control-Allow-Origin' : '*',
-    //   },
-    // responseType: 'json',
-    //  })
-    axios.get(` https://pokeapi.co/api/v2/pokemon/${this.state.userName}`)
+    P.getPokemonByName(this.state.pokemonName)
       .then(resp => {
         console.log(resp);
-        this.props.onSubmit(resp.data);
+        this.props.onSubmit(resp);
       });
   };
 
@@ -40,7 +45,7 @@ class Form extends Component {
           <Paper className="pokemon-search-bar">
             <form onSubmit={this.handleSubmit}>
               <Input type="text"
-                onChange={(event) => this.setState({ userName: event.target.value })}
+                onChange={(event) => this.setState({ pokemonName: event.target.value })}
                 placeholder="Pokemon Name" />
               <Button type="submit" variant="contained">Add Pokemon</Button>
             </form>
@@ -61,7 +66,7 @@ const PokemonCard = (props) => {
     labels: mapAbilities(props.stats),
     datasets: [
       {
-        label: 'My First dataset',
+        label: 'Statistics',
         backgroundColor: 'rgba(179,181,198,0.2)',
         borderColor: 'rgba(179,181,198,1)',
         pointBackgroundColor: 'rgba(179,181,198,1)',
@@ -152,7 +157,7 @@ const mapAbilities = (array) => {
 };
 
 const mapStatValues = (array) => {
-
+debugger;
   var statValues = [];
   array.forEach(element => {
     statValues.push(element.base_stat);
