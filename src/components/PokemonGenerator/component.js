@@ -157,7 +157,6 @@ const mapAbilities = (array) => {
 };
 
 const mapStatValues = (array) => {
-debugger;
   var statValues = [];
   array.forEach(element => {
     statValues.push(element.base_stat);

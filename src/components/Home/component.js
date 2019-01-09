@@ -94,9 +94,9 @@ function Home(props) {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               <img width="25px" src={bugicon} alt="logo" className="bug-icon"/>
-            Pierce Lauring
+            Pokemon Statistics
           </Typography>
-          <Button color="primary" variant="text">GitHub</Button>
+          <Button color="primary" variant="text">Button</Button>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
@@ -112,7 +112,7 @@ function Home(props) {
         </div>
         {/* End hero unit */}
         <PokemonGenerator />
-        <Grid container spacing={40} alignItems="flex-start" contentalign="center" className="card-box">
+        {/* <Grid container spacing={40} alignItems="flex-start" contentalign="center" className="card-box">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -140,7 +140,7 @@ function Home(props) {
               </Card>
             </Grid>
           ))}
-        </Grid>
+        </Grid> */}
       </main>
       {/* Footer */}
       <footer className={classNames(classes.footer, classes.layout)}>
