@@ -31,23 +31,26 @@ class Form extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    P.getPokemonByName(this.state.pokemonName)
-      .then(resp => {
-        console.log(resp);
-        this.props.onSubmit(resp);
-      });
+    if (this.state.pokemonName !== undefined) {
+      var pokemonRequest = this.state.pokemonName.toLowerCase();
+      P.getPokemonByName(pokemonRequest)
+        .then(resp => {
+          console.log(resp);
+          this.props.onSubmit(resp);
+        });
+    }
   };
 
   render() {
     return (
-      <Grid container spacing={24}>
-        <Grid item xs={12}>
+      <Grid container spacing={24} className="form-container-grid" >
+        <Grid item xs={6}>
           <Paper className="pokemon-search-bar">
             <form onSubmit={this.handleSubmit}>
               <Input type="text"
                 onChange={(event) => this.setState({ pokemonName: event.target.value })}
                 placeholder="Pokemon Name" />
-              <Button type="submit" variant="contained">Add Pokemon</Button>
+              <Button type="submit" variant="text" className="pokemon-submit-button">Add Pokemon</Button>
             </form>
           </Paper>
         </Grid>
@@ -90,13 +93,15 @@ const PokemonCard = (props) => {
             className="cardHeader"
           />
           <CardContent >
-            <Typography variant="subtitle1" align="center">
-              {props.name}
-            </Typography>
+            {props.types.map(element => (
+                <Typography variant="subtitle1" color="textSecondary"  align="center">
+                  {element.type.name.toUpperCase()}
+                </Typography>
+              ))}
             <div className="sprite-container">
-            <img width="75px" src={props.sprites.front_default} alt="sprite front" className="sprite-img" />
-            <img width="75px" src={props.sprites.back_default} alt="sprite back" />
-            <img width="75px" src={props.sprites.front_shiny} alt="sprite front shiny" />
+              <img width="75px" src={props.sprites.front_default} alt="sprite front" className="sprite-img" />
+              <img width="75px" src={props.sprites.back_default} alt="sprite back" />
+              <img width="75px" src={props.sprites.front_shiny} alt="sprite front shiny" />
             </div>
             <Typography align="center">Weight: {props.weight}</Typography>
             <Radar data={data} />
@@ -115,7 +120,7 @@ const PokemonCard = (props) => {
 const CardList = (props) => {
   return (
     <div>
-      <Grid container spacing={40} alignItems="center" alignContent="center"  className="card-list">
+      <Grid container spacing={40} className="card-list">
         {props.cards.map(card => <PokemonCard {...card} />)}
       </Grid>
     </div>
@@ -126,9 +131,11 @@ class PokemonGenerator extends React.Component {
   state = { cards: [] };
 
   addNewCard = (cardInfo) => {
-    this.setState(prevState => ({
-      cards: prevState.cards.concat(cardInfo)
-    }));
+    this.setState({ cards: [cardInfo] });
+
+    // prevState => ({
+    // cards: prevState.cards.concat(cardInfo)
+    // }));
   };
 
   render() {

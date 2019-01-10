@@ -1,6 +1,6 @@
 .pokemon-search-bar{
     padding: 10px;
-    margin: 10px;
+    margin: 20px;
   }
   
   .cardHeader{
@@ -11,6 +11,10 @@
     justify-content: center;
   }
 
+  .form-container-grid{
+  justify-content: center;
+  }
+
   .sprite-container{
     justify-content: center;
   }
@@ -19,4 +23,9 @@
     display:inline-block;
     margin:20px;
     padding:5px;
+  }
+
+  .pokemon-submit-button{
+    margin-left: 10px;
+    float: right;
   }

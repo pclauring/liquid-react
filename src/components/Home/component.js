@@ -68,15 +68,6 @@ const styles = theme => ({
   },
 });
 
-const tiers = [
-  {
-    title: 'GitHub',
-    subheader: 'My Work',
-    description: ['Git Stuff'],
-    buttonText: 'See it',
-    buttonVariant: 'contained',
-  },
-];
 const footers = [
   {
     title: 'Links',
