@@ -3,12 +3,7 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Typography from '@material-ui/core/Typography';
-import { Radar } from 'react-chartjs-2';
+import PokemonCard from '../PokemonCard'
 import './PokemonGenerator.css';
 
 //Pokemon Api Wrapper https://github.com/PokeAPI/pokeapi-js-wrapper
@@ -60,68 +55,11 @@ class Form extends Component {
   };
 };
 
-
-
-const PokemonCard = (props) => {
-
-
-  const data = {
-    labels: mapAbilities(props.stats),
-    datasets: [
-      {
-        label: 'Statistics',
-        backgroundColor: 'rgba(179,181,198,0.2)',
-        borderColor: 'rgba(179,181,198,1)',
-        pointBackgroundColor: 'rgba(179,181,198,1)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(179,181,198,1)',
-        data: mapStatValues(props.stats)
-      }
-    ]
-  }
-
-  return (
-    <div>
-      <Grid item xs={12} >
-        <Card>
-          <CardHeader
-            title={capitalize(props.name)}
-            subheader={capitalize(props.types[0].type.name)}
-            titleTypographyProps={{ align: 'center' }}
-            subheaderTypographyProps={{ align: 'center' }}
-            className="cardHeader"
-          />
-          <CardContent >
-            {props.types.map(element => (
-                <Typography variant="subtitle1" color="textSecondary"  align="center">
-                  {element.type.name.toUpperCase()}
-                </Typography>
-              ))}
-            <div className="sprite-container">
-              <img width="75px" src={props.sprites.front_default} alt="sprite front" className="sprite-img" />
-              <img width="75px" src={props.sprites.back_default} alt="sprite back" />
-              <img width="75px" src={props.sprites.front_shiny} alt="sprite front shiny" />
-            </div>
-            <Typography align="center">Weight: {props.weight}</Typography>
-            <Radar data={data} />
-          </CardContent>
-          <CardActions>
-            <Button fullWidth variant="contained" color="primary">
-              Stats
-                  </Button>
-          </CardActions>
-        </Card>
-      </Grid>
-    </div>
-  );
-};
-
 const CardList = (props) => {
   return (
     <div>
       <Grid container spacing={40} className="card-list">
-        {props.cards.map(card => <PokemonCard {...card} />)}
+        {props.cards.map(card => <PokemonCard key={card.name} {...card} />)}
       </Grid>
     </div>
   );
@@ -143,33 +81,10 @@ class PokemonGenerator extends React.Component {
       <div>
         <Form onSubmit={this.addNewCard} />
         <CardList cards={this.state.cards} />
-
       </div>
     )
   };
 };
 
-const capitalize = (word) => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
-
-const mapAbilities = (array) => {
-
-  var statLabels = [];
-  array.forEach(element => {
-    statLabels.push(element.stat.name);
-  });
-
-  return statLabels;
-};
-
-const mapStatValues = (array) => {
-  var statValues = [];
-  array.forEach(element => {
-    statValues.push(element.base_stat);
-  });
-
-  return statValues;
-};
 
 export default PokemonGenerator;
