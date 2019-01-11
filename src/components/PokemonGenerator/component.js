@@ -3,13 +3,14 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import PokemonCard from '../PokemonCard'
+import PokemonCard from '../PokemonCard';
+import Select from 'react-select';
 import './PokemonGenerator.css';
 
 //Pokemon Api Wrapper https://github.com/PokeAPI/pokeapi-js-wrapper
 const Pokedex = require('pokeapi-js-wrapper');
 
-const options = {
+const pokemonOptions = {
   protocol: 'https',
   hostName: 'pokeapi.co',
   versionPath: '/api/v2/',
@@ -17,12 +18,24 @@ const options = {
   timeout: 5 * 1000 // 5s
 }
 
-const P = new Pokedex.Pokedex(options);
+const options = [
+  { value: 'Bulbasaur', label: 'Bulbasaur' },
+  { value: 'Squirtle', label: 'Squirtle' },
+  { value: 'Charmander', label: 'Charmander' }
+];
+
+const P = new Pokedex.Pokedex(pokemonOptions);
 
 class Form extends Component {
+  state = {
+    pokemonName: '',
+    selectedOption: null
+  }
 
-
-  state = { pokemonName: '' }
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -37,11 +50,19 @@ class Form extends Component {
   };
 
   render() {
+
+    const { selectedOption } = this.state;
+
     return (
       <Grid container spacing={24} className="form-container-grid" >
         <Grid item xs={6}>
           <Paper className="pokemon-search-bar">
             <form onSubmit={this.handleSubmit}>
+              <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={options}
+              />
               <Input type="text"
                 onChange={(event) => this.setState({ pokemonName: event.target.value })}
                 placeholder="Pokemon Name" />
