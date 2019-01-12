@@ -18,11 +18,10 @@ const pokemonOptions = {
   timeout: 5 * 1000 // 5s
 }
 
-const options = [
-  { value: 'Bulbasaur', label: 'Bulbasaur' },
-  { value: 'Squirtle', label: 'Squirtle' },
-  { value: 'Charmander', label: 'Charmander' }
-];
+const options = require('./PokemonFullList').map(option => ({
+  value: option.label,
+  label: option.label,
+}));
 
 const P = new Pokedex.Pokedex(pokemonOptions);
 
