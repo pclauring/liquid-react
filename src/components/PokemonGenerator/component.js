@@ -33,13 +33,12 @@ class Form extends Component {
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.pokemonName !== undefined) {
-      var pokemonRequest = this.state.pokemonName.toLowerCase();
+    if (this.state.selectedOption.value !== null) {
+      var pokemonRequest = this.state.selectedOption.value.toLowerCase();
       P.getPokemonByName(pokemonRequest)
         .then(resp => {
           console.log(resp);
@@ -56,17 +55,18 @@ class Form extends Component {
       <Grid container spacing={24} className="form-container-grid" >
         <Grid item xs={6}>
           <Paper className="pokemon-search-bar">
-            <form onSubmit={this.handleSubmit}>
-              <Select
-                value={selectedOption}
-                onChange={this.handleChange}
-                options={options}
-              />
-              <Input type="text"
+              <form onSubmit={this.handleSubmit} className="pokemoncard-form">
+                <Select
+                  value={selectedOption}
+                  onChange={this.handleChange}
+                  options={options}
+                  placeholder="Enter a Pokemon Name..."
+                />
+                {/* <Input type="text"
                 onChange={(event) => this.setState({ pokemonName: event.target.value })}
-                placeholder="Pokemon Name" />
-              <Button type="submit" variant="text" className="pokemon-submit-button">Add Pokemon</Button>
-            </form>
+                placeholder="Pokemon Name" /> */}
+                <Button type="submit" variant="text" className="pokemon-submit-button">Search Pokemon</Button>
+              </form>
           </Paper>
         </Grid>
       </Grid>

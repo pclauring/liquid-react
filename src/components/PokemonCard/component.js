@@ -72,8 +72,9 @@ class PokemonCard extends Component {
               ))}
               <div className="sprite-container">
                 <img width="75px" src={this.props.sprites.front_default} alt="sprite front" className="sprite-img" />
-                <img width="75px" src={this.props.sprites.back_default} alt="sprite back" />
-                <img width="75px" src={this.props.sprites.front_shiny} alt="sprite front shiny" />
+                <img width="75px" src={this.props.sprites.back_default} alt="sprite back" className="sprite-img" />
+                <img width="75px" src={this.props.sprites.front_shiny} alt="sprite front shiny" className="sprite-img" />
+                <img width="75px" src={this.props.sprites.back_shiny} alt="sprite back shiny" className="sprite-img"  />
               </div>
               <Typography align="center">Weight: {this.props.weight}</Typography>
               <Radar data={this.state} />
