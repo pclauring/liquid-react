@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
-import fire from '../../assets/fire.jpg';
+import fire from '../../assets/bug.png';
 
 function handleClick() {
   alert('You clicked the Chip.'); // eslint-disable-line no-alert
