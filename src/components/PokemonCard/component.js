@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
+import PokemonType from '../PokemonType'
 import { Radar } from 'react-chartjs-2';
 import './PokemonCard.css';
 
@@ -59,7 +60,7 @@ class PokemonCard extends Component {
           <Card>
             <CardHeader
               title={capitalize(this.props.name)}
-              subheader={capitalize(this.props.types[0].type.name)}
+              subheader={'ID: ' + this.props.id}
               titleTypographyProps={{ align: 'center' }}
               subheaderTypographyProps={{ align: 'center' }}
               className="cardHeader"
@@ -67,7 +68,7 @@ class PokemonCard extends Component {
             <CardContent >
               {this.props.types.map(element => (
                 <Typography key={element.type.name} variant="subtitle1" color="textSecondary" align="center">
-                  {element.type.name.toUpperCase()}
+                  <PokemonType type={element.type.name.toUpperCase()}/>
                 </Typography>
               ))}
               <div className="sprite-container">

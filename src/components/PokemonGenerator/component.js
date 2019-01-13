@@ -62,6 +62,7 @@ class Form extends Component {
                   options={options}
                   placeholder="Enter a Pokemon Name..."
                 />
+                <hr />
                 {/* <Input type="text"
                 onChange={(event) => this.setState({ pokemonName: event.target.value })}
                 placeholder="Pokemon Name" /> */}
