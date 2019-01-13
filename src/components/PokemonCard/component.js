@@ -66,16 +66,18 @@ class PokemonCard extends Component {
               className="cardHeader"
             />
             <CardContent >
-              {this.props.types.map(element => (
-                <Typography key={element.type.name} variant="subtitle1" color="textSecondary" align="center">
-                  <PokemonType type={element.type.name.toUpperCase()}/>
-                </Typography>
-              ))}
+              <Grid container spacing={24} direction="row" justify="center" alignItems="center">
+                  {this.props.types.map(element => (
+                    <Typography key={element.type.name} variant="subtitle1" color="textSecondary" align="center">
+                      <PokemonType type={element.type.name.toUpperCase()} />
+                    </Typography>
+                  ))}
+              </Grid>
               <div className="sprite-container">
                 <img width="75px" src={this.props.sprites.front_default} alt="sprite front" className="sprite-img" />
                 <img width="75px" src={this.props.sprites.back_default} alt="sprite back" className="sprite-img" />
                 <img width="75px" src={this.props.sprites.front_shiny} alt="sprite front shiny" className="sprite-img" />
-                <img width="75px" src={this.props.sprites.back_shiny} alt="sprite back shiny" className="sprite-img"  />
+                <img width="75px" src={this.props.sprites.back_shiny} alt="sprite back shiny" className="sprite-img" />
               </div>
               <Typography align="center">Weight: {this.props.weight}</Typography>
               <Radar data={this.state} />

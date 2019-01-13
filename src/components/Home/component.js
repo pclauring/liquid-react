@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -82,7 +81,6 @@ function Home(props) {
               <img width="25px" src={bugicon} alt="logo" className="bug-icon"/>
             Pokemon Statistics
           </Typography>
-          <Button color="primary" variant="text">Button</Button>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
