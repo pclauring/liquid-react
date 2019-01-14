@@ -1,3 +1,7 @@
 .pokemon-type-grid-item{
     padding: 10px;
 }
+
+.pokemon-type-chip{
+    background-color: orange;
+}

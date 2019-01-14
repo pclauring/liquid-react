@@ -96,35 +96,6 @@ function Home(props) {
         </div>
         {/* End hero unit */}
         <PokemonGenerator />
-        {/* <Grid container spacing={40} alignItems="flex-start" contentalign="center" className="card-box">
-          {tiers.map(tier => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  {tier.description.map(line => (
-                    <Typography variant="subtitle1" align="center" key={line}>
-                      {line}
-                    </Typography>
-                  ))}
-                </CardContent>
-                <CardActions className={classes.cardActions}>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid> */}
       </main>
       {/* Footer */}
       <footer className={classNames(classes.footer, classes.layout)}>
