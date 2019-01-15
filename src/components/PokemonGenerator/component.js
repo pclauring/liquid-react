@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import PokemonCard from '../PokemonCard';
 import Select from 'react-select';
 import './PokemonGenerator.css';
+import * as _ from 'underscore';
 
 //Pokemon Api Wrapper https://github.com/PokeAPI/pokeapi-js-wrapper
 const Pokedex = require('pokeapi-js-wrapper');
@@ -16,9 +17,10 @@ const pokemonOptions = {
   cache: true,
   timeout: 5 * 1000 // 5s
 }
+const rangeofPokemon = _.range(1, 810);
 
-const options = require('./PokemonFullList').map(option => ({
-  value: option.label,
+const options = require('./PokemonFullList').map((option, index) => ({
+  value: index + 1,
   label: option.label,
 }));
 
@@ -37,7 +39,7 @@ class Form extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.selectedOption.value !== null) {
-      var pokemonRequest = this.state.selectedOption.value.toLowerCase();
+      var pokemonRequest = this.state.selectedOption.value;
       P.getPokemonByName(pokemonRequest)
         .then(resp => {
           console.log(resp);
@@ -54,19 +56,19 @@ class Form extends Component {
       <Grid container spacing={24} className="form-container-grid" >
         <Grid item xs={6}>
           <Paper className="pokemon-search-bar">
-              <form onSubmit={this.handleSubmit} className="pokemoncard-form">
-                <Select
-                  value={selectedOption}
-                  onChange={this.handleChange}
-                  options={options}
-                  placeholder="Enter a Pokemon Name..."
-                />
-                <hr />
-                {/* <Input type="text"
+            <form onSubmit={this.handleSubmit} className="pokemoncard-form">
+              <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={options}
+                placeholder="Enter a Pokemon Name..."
+              />
+              <hr />
+              {/* <Input type="text"
                 onChange={(event) => this.setState({ pokemonName: event.target.value })}
                 placeholder="Pokemon Name" /> */}
-                <Button type="submit" variant="text" className="pokemon-submit-button">Search Pokemon</Button>
-              </form>
+              <Button type="submit" variant="text" className="pokemon-submit-button">Search Pokemon</Button>
+            </form>
           </Paper>
         </Grid>
       </Grid>

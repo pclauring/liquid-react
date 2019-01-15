@@ -15,7 +15,8 @@
     "react-scripts": "2.1.2",
     "react-select": "^2.2.0",
     "reactstrap": "^6.5.0",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "underscore": "^1.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
