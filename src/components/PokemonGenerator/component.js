@@ -17,14 +17,16 @@ const pokemonOptions = {
   cache: true,
   timeout: 5 * 1000 // 5s
 }
-const rangeofPokemon = _.range(1, 810);
+
+const P = new Pokedex.Pokedex(pokemonOptions);
+
+//To be used for selecting a random pokemon
+// const rangeofPokemon = _.range(1, 810);
 
 const options = require('./PokemonFullList').map((option, index) => ({
   value: index + 1,
   label: option.label,
 }));
-
-const P = new Pokedex.Pokedex(pokemonOptions);
 
 class Form extends Component {
   state = {
@@ -34,7 +36,7 @@ class Form extends Component {
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -81,7 +83,7 @@ const CardList = (props) => {
   return (
     <div>
       <Grid container spacing={40} className="card-list">
-        {props.cards.map(card => <PokemonCard key={card.name} {...card} />)}
+        {props.cards.map(card => <PokemonCard key={card.id} {...card} />)}
       </Grid>
     </div>
   );

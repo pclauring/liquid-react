@@ -10,7 +10,18 @@ import PokemonType from '../PokemonType'
 import { Radar } from 'react-chartjs-2';
 import './PokemonCard.css';
 
+//Pokemon Api Wrapper https://github.com/PokeAPI/pokeapi-js-wrapper
+const Pokedex = require('pokeapi-js-wrapper');
 
+const pokemonOptions = {
+  protocol: 'https',
+  hostName: 'pokeapi.co',
+  versionPath: '/api/v2/',
+  cache: true,
+  timeout: 5 * 1000 // 5s
+}
+
+const P = new Pokedex.Pokedex(pokemonOptions);
 
 const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
@@ -50,7 +61,17 @@ class PokemonCard extends Component {
         pointHoverBorderColor: 'rgba(179,181,198,1)',
         data: mapStatValues(this.props.stats)
       }
-    ]
+    ],
+    speciesInfo: null
+  }
+
+  handleInfoClick = (event) => {
+    event.preventDefault();
+    P.getPokemonSpeciesByName(this.props.name)
+      .then(resp => {
+        console.log(resp);
+        this.setState({ speciesInfo: resp })
+      });
   }
 
   render() {
@@ -67,11 +88,11 @@ class PokemonCard extends Component {
             />
             <CardContent >
               <Grid container spacing={24} direction="row" justify="center" alignItems="center">
-                  {this.props.types.map(element => (
-                    <Typography key={element.type.name} variant="subtitle1" color="textSecondary" align="center">
-                      <PokemonType type={element.type.name.toUpperCase()} />
-                    </Typography>
-                  ))}
+                {this.props.types.map(element => (
+                  <Typography key={element.type.name} variant="subtitle1" color="textSecondary" align="center">
+                    <PokemonType type={element.type.name.toUpperCase()} />
+                  </Typography>
+                ))}
               </Grid>
               <div className="sprite-container">
                 <img width="75px" src={this.props.sprites.front_default} alt="sprite front" className="sprite-img" />
@@ -83,9 +104,14 @@ class PokemonCard extends Component {
               <Radar data={this.state} />
             </CardContent>
             <CardActions>
-              <Button fullWidth variant="contained" color="primary">
-                Stats
+              <Grid container spacing={24} direction="row" justify="center" alignItems="center">
+                <Button variant="contained" color="primary" onClick={this.handleInfoClick}>
+                  Flavor Text
                   </Button>
+                {this.state.speciesInfo !== null &&
+                  <Typography align="center">{this.state.speciesInfo.flavor_text_entries[1].flavor_text}</Typography>
+                }
+              </Grid>
             </CardActions>
           </Card>
         </Grid>
