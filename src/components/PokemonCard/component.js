@@ -23,6 +23,16 @@ const pokemonOptions = {
 
 const P = new Pokedex.Pokedex(pokemonOptions);
 
+const handleInfoClick = (name) => {
+  // event.preventDefault();
+   P.getPokemonSpeciesByName(name)
+     .then(resp => {
+       console.log(resp);
+      // this.setState({ speciesInfo: resp })
+       return resp;
+     });
+ }
+
 const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
@@ -61,18 +71,21 @@ class PokemonCard extends Component {
         pointHoverBorderColor: 'rgba(179,181,198,1)',
         data: mapStatValues(this.props.stats)
       }
-    ],
-    speciesInfo: null
+    ]
   }
 
-  handleInfoClick = (event) => {
-    event.preventDefault();
-    P.getPokemonSpeciesByName(this.props.name)
-      .then(resp => {
-        console.log(resp);
-        this.setState({ speciesInfo: resp })
-      });
+  componentDidMount() {
+    this.getSpeciesInfo();
   }
+
+  getSpeciesInfo = () => {
+    P.getPokemonSpeciesByName(this.props.name)
+        .then(resp => {
+          console.log(resp);
+          this.setState({ speciesInfo: resp })
+        });
+    };
+
 
   render() {
     return (
@@ -105,11 +118,11 @@ class PokemonCard extends Component {
             </CardContent>
             <CardActions>
               <Grid container spacing={24} direction="row" justify="center" alignItems="center">
-                <Button variant="contained" color="primary" onClick={this.handleInfoClick}>
+                {/* <Button variant="contained" color="primary" onClick={this.handleInfoClick}>
                   Flavor Text
-                  </Button>
-                {this.state.speciesInfo !== null &&
-                  <Typography align="center">{this.state.speciesInfo.flavor_text_entries[1].flavor_text}</Typography>
+                  </Button> */}
+                {this.state.speciesInfo &&
+                 <Typography align="center">{this.state.speciesInfo.flavor_text_entries[1].flavor_text}</Typography>
                 }
               </Grid>
             </CardActions>
