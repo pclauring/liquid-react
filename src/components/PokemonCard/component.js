@@ -121,8 +121,14 @@ class PokemonCard extends Component {
                 {/* <Button variant="contained" color="primary" onClick={this.handleInfoClick}>
                   Flavor Text
                   </Button> */}
+                    <Typography variant="overline" gutterBottom>Species Information</Typography>
                 {this.state.speciesInfo &&
-                 <Typography align="center">{this.state.speciesInfo.flavor_text_entries[1].flavor_text}</Typography>
+                <div>
+                 <Typography variant="body1" align="center">{this.state.speciesInfo.flavor_text_entries[1].flavor_text}</Typography>
+                 <Typography variant="overline" gutterBottom>Shape: {capitalize(this.state.speciesInfo.shape.name)}</Typography>
+                 <Typography variant="overline" gutterBottom>Habitat: {capitalize(this.state.speciesInfo.habitat.name)}</Typography>
+                 <Typography variant="overline" gutterBottom>Color: {capitalize(this.state.speciesInfo.color.name)}</Typography>
+                 </div>
                 }
               </Grid>
             </CardActions>
