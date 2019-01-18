@@ -12,3 +12,9 @@
     margin:5px;
     padding:5px;
   }
+
+ .pokemon-card-action-paper{
+    margin:10px;
+    padding:10px;
+    background-color: lightgrey;
+ }

@@ -6,9 +6,26 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
-import PokemonType from '../PokemonType'
+import PokemonType from '../PokemonType';
+import orange from '@material-ui/core/colors/orange';
+import lime from '@material-ui/core/colors/lime';
+import green from '@material-ui/core/colors/green';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import blue from '@material-ui/core/colors/blue';
+import grey from '@material-ui/core/colors/grey';
+import cyan from '@material-ui/core/colors/cyan';
+import deepPurple from '@material-ui/core/colors/deepPurple';
+import yellow from '@material-ui/core/colors/yellow';
+import purple from '@material-ui/core/colors/purple';
+import pink from '@material-ui/core/colors/pink';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import brown from '@material-ui/core/colors/brown';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import indigo from '@material-ui/core/colors/indigo';
 import { Radar } from 'react-chartjs-2';
 import './PokemonCard.css';
+import { Paper } from '@material-ui/core';
+
 
 //Pokemon Api Wrapper https://github.com/PokeAPI/pokeapi-js-wrapper
 const Pokedex = require('pokeapi-js-wrapper');
@@ -23,16 +40,6 @@ const pokemonOptions = {
 
 const P = new Pokedex.Pokedex(pokemonOptions);
 
-const handleInfoClick = (name) => {
-  // event.preventDefault();
-   P.getPokemonSpeciesByName(name)
-     .then(resp => {
-       console.log(resp);
-      // this.setState({ speciesInfo: resp })
-       return resp;
-     });
- }
-
 const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
@@ -41,7 +48,7 @@ const mapAbilities = (array) => {
 
   var statLabels = [];
   array.forEach(element => {
-    statLabels.push(element.stat.name);
+    statLabels.push(element.stat.name.toUpperCase());
   });
 
   return statLabels;
@@ -55,6 +62,36 @@ const mapStatValues = (array) => {
 
   return statValues;
 };
+
+const pushTypes = (array) => {
+  var types = [];
+  array.forEach(element => {
+    types.push(element.type.name.toUpperCase());
+  });
+
+  return types;
+}
+
+const getType = (type) => {
+  if (type === 'FIRE') { return { color: orange[50]  }; }
+  else if (type === 'DARK') { return { color: grey[300] }; }
+  else if (type === 'FAIRY') { return {color: pink[50]} ; }
+  else if (type === 'ICE') { return { color: lightBlue[50] }; }
+  else if (type === 'ROCK') { return { color: brown[100] }; }
+  else if (type === 'FIGHTING') { return { color: deepOrange[100] }; }
+  else if (type === 'GROUND') { return { color: orange[100] }; }
+  else if (type === 'POISON') { return {color: purple[100] }; }
+  else if (type === 'DRAGON') { return {color: indigo[100] }; }
+  else if (type === 'GRASS') { return {color: green[50] }; }
+  else if (type === 'WATER') { return {color: blue[50] }; }
+  else if (type === 'NORMAL') { return {color: grey[50] }; }
+  else if (type === 'FLYING') { return {color: indigo[50] }; }
+  else if (type === 'PSYCHIC') { return {color: purple[50] }; }
+  else if (type === 'BUG') { return {color: lime[50] }; }
+  else if (type === 'STEEL') { return { color: blueGrey[50] }; }
+  else if (type === 'ELECTRIC') { return {color: yellow[50] }; }
+  else if (type === 'GHOST') { return {color: deepPurple[50] }; }
+}
 
 class PokemonCard extends Component {
 
@@ -71,11 +108,18 @@ class PokemonCard extends Component {
         pointHoverBorderColor: 'rgba(179,181,198,1)',
         data: mapStatValues(this.props.stats)
       }
-    ]
+    ],
+    types: pushTypes(this.props.types)
   }
 
   componentDidMount() {
     this.getSpeciesInfo();
+  }
+
+  setGradient = (types) =>{
+    if(types.length >= 1){
+      return 'linear-gradient(to right bottom,' + getType(types[0]).color + ',' + getType(types[1]).color + ')'
+    }
   }
 
   getSpeciesInfo = () => {
@@ -121,13 +165,14 @@ class PokemonCard extends Component {
                 {/* <Button variant="contained" color="primary" onClick={this.handleInfoClick}>
                   Flavor Text
                   </Button> */}
-                    <Typography variant="overline" gutterBottom>Species Information</Typography>
                 {this.state.speciesInfo &&
                 <div>
-                 <Typography variant="body1" align="center">{this.state.speciesInfo.flavor_text_entries[1].flavor_text}</Typography>
+                  <Paper elevation={2} className="pokemon-card-action-paper"  style={{backgroundColor: getType(this.state.types[0]).color, background: this.setGradient(this.state.types) }}>
+                 <Typography variant="overline" gutterBottom>Species Info: {this.state.speciesInfo.genera[2].genus}</Typography>
                  <Typography variant="overline" gutterBottom>Shape: {capitalize(this.state.speciesInfo.shape.name)}</Typography>
                  <Typography variant="overline" gutterBottom>Habitat: {capitalize(this.state.speciesInfo.habitat.name)}</Typography>
                  <Typography variant="overline" gutterBottom>Color: {capitalize(this.state.speciesInfo.color.name)}</Typography>
+                 </Paper>
                  </div>
                 }
               </Grid>
