@@ -117,8 +117,11 @@ class PokemonCard extends Component {
   }
 
   setGradient = (types) =>{
-    if(types.length >= 1){
-      return 'linear-gradient(to right bottom,' + getType(types[0]).color + ',' + getType(types[1]).color + ')'
+    if(types.length >= 2){
+      return 'linear-gradient(to right ,' + getType(types[0]).color + ',' + getType(types[1]).color + ')'
+    }
+    else{
+      return 'linear-gradient(to right ,' + getType(types[0]).color + ',' + getType(types[0]).color + ')'
     }
   }
 
