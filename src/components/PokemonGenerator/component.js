@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PokemonCard from '../PokemonCard';
 import Select from 'react-select';
+import PokemonSelectForm from '../PokemonSelectForm';
 import './PokemonGenerator.css';
 import * as _ from 'underscore';
 
@@ -103,7 +104,13 @@ class PokemonGenerator extends React.Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.addNewCard} />
+        <Grid container spacing={24} className="form-container-grid" >
+          <Grid item xs={6}>
+          <Paper className="pokemon-search-bar">
+            <PokemonSelectForm onSubmit={this.addNewCard} buttonTitle={"Select Pokemon"}/>
+            </Paper>
+          </Grid>
+        </Grid>
         <CardList cards={this.state.cards} />
       </div>
     )

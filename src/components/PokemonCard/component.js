@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import Select from 'react-select';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import PokemonType from '../PokemonType';
+import PokemonSelectForm from '../PokemonSelectForm';
 import orange from '@material-ui/core/colors/orange';
 import lime from '@material-ui/core/colors/lime';
 import green from '@material-ui/core/colors/green';
@@ -94,55 +94,6 @@ const getType = (type) => {
   else if (type === 'GHOST') { return { color: deepPurple[50], secondaryColor: deepPurple[200] }; }
 }
 
-const options = require('../PokemonGenerator/PokemonFullList').map((option, index) => ({
-  value: index + 1,
-  label: option.label,
-}));
-
-class Form extends Component {
-  state = {
-    pokemonName: '',
-    selectedOption: null
-  }
-
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    if (this.state.selectedOption.value !== null) {
-      var pokemonRequest = this.state.selectedOption.value;
-      P.getPokemonByName(pokemonRequest)
-        .then(resp => {
-          console.log(resp);
-          this.props.onSubmit(resp);
-        });
-    }
-  };
-
-  render() {
-
-    const { selectedOption } = this.state;
-
-    return (
-          <Paper className="pokemon-search-bar">
-            <form onSubmit={this.handleSubmit} className="pokemoncard-form">
-              <Select
-                value={selectedOption}
-                onChange={this.handleChange}
-                options={options}
-                placeholder="Enter a Pokemon Name..."
-              />
-              <hr />
-              <Button type="submit" variant="text" className="pokemon-submit-button">Search Pokemon</Button>
-            </form>
-          </Paper>
-
-    )
-  };
-};
-
 class PokemonCard extends Component {
 
   state = {
@@ -198,7 +149,7 @@ class PokemonCard extends Component {
           // pointBorderColor: '#fff',
           borderColor: getType(pushTypes(pokemon.types)[0]).secondaryColor,
           pointBackgroundColor: getType(pushTypes(pokemon.types)[0]).color,
-          pointBorderColor:getType(pushTypes(pokemon.types)[0]).secondaryColor,
+          pointBorderColor: getType(pushTypes(pokemon.types)[0]).secondaryColor,
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(179,181,198,1)',
           data: mapStatValues(pokemon.stats)
@@ -252,7 +203,9 @@ class PokemonCard extends Component {
               </div>
               <Typography align="center">Weight: {this.props.weight}</Typography>
               <Radar data={this.state} />
-              <Form onSubmit={this.addPokemonStats} />
+              <Paper className="pokemon-search-bar">
+                <PokemonSelectForm onSubmit={this.addPokemonStats} buttonTitle={"Compare Stats"}/>
+              </Paper>
             </CardContent>
             <CardActions>
               <Grid container spacing={24} direction="row" justify="center" alignItems="center">
