@@ -107,7 +107,7 @@ class PokemonGenerator extends React.Component {
         <Grid container spacing={24} className="form-container-grid" >
           <Grid item xs={6}>
           <Paper className="pokemon-search-bar">
-            <PokemonSelectForm onSubmit={this.addNewCard} buttonTitle={"Select Pokemon"}/>
+            <PokemonSelectForm onSubmit={this.addNewCard} buttonVariant={"raised"} buttonTitle={"Select Pokemon"}/>
             </Paper>
           </Grid>
         </Grid>

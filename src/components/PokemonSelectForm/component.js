@@ -56,7 +56,7 @@ class PokemonSelectForm extends Component {
                 placeholder="Enter a Pokemon Name..."
               />
               <hr />
-              <Button type="submit" variant="text" className="pokemon-submit-button">{this.props.buttonTitle}</Button>
+              <Button type="submit" variant={this.props.buttonVariant} className="pokemon-submit-button">{this.props.buttonTitle}</Button>
             </form>
     )
   };

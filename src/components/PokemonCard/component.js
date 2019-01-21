@@ -153,9 +153,7 @@ class PokemonCard extends Component {
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(179,181,198,1)',
           data: mapStatValues(pokemon.stats)
-        }
-
-        )
+        })
       }));
   };
 
@@ -203,9 +201,9 @@ class PokemonCard extends Component {
               </div>
               <Typography align="center">Weight: {this.props.weight}</Typography>
               <Radar data={this.state} />
-              <Paper className="pokemon-search-bar">
-                <PokemonSelectForm onSubmit={this.addPokemonStats} buttonTitle={"Compare Stats"}/>
-              </Paper>
+              <div className="add-stats-form">
+              <PokemonSelectForm onSubmit={this.addPokemonStats} buttonVariant={"outlined"} buttonTitle={"Compare Stats"}  />
+              </div>
             </CardContent>
             <CardActions>
               <Grid container spacing={24} direction="row" justify="center" alignItems="center">
