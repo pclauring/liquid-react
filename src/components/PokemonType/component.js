@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
-import  './PokemonType.css';
+import Popover from '@material-ui/core/Popover';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TypeEffectivenessSection from '../TypeEffectivenessSection/component';
+import './PokemonType.css';
 import fireIcon from '../../assets/fire.png';
 import bugIcon from '../../assets/bug.png';
 import darkIcon from '../../assets/dark.png';
@@ -38,17 +42,12 @@ import deepOrange from '@material-ui/core/colors/deepOrange';
 import indigo from '@material-ui/core/colors/indigo';
 
 
-
-function handleClick() {
-  alert('You clicked the Chip.'); // eslint-disable-line no-alert
-}
-
 class PokemonType extends Component {
 
   getType = () => {
-    if (this.props.type === 'FIRE') { return { icon: fireIcon, chipColor: orange[50]  }; }
+    if (this.props.type === 'FIRE') { return { icon: fireIcon, chipColor: orange[50] }; }
     else if (this.props.type === 'DARK') { return { icon: darkIcon, chipColor: grey[300] }; }
-    else if (this.props.type === 'FAIRY') { return { icon: fairyIcon, chipColor: pink[50]} ; }
+    else if (this.props.type === 'FAIRY') { return { icon: fairyIcon, chipColor: pink[50] }; }
     else if (this.props.type === 'ICE') { return { icon: iceIcon, chipColor: lightBlue[50] }; }
     else if (this.props.type === 'ROCK') { return { icon: rockIcon, chipColor: brown[100] }; }
     else if (this.props.type === 'FIGHTING') { return { icon: fightingIcon, chipColor: deepOrange[100] }; }
@@ -66,19 +65,59 @@ class PokemonType extends Component {
     else if (this.props.type === 'GHOST') { return { icon: ghostIcon, chipColor: deepPurple[50] }; }
   }
 
-  state = this.getType();
-  
+  state = {
+    anchorEl: null,
+    typeStyle: this.getType()
+  };
+
+  handleClick = event => {
+    this.setState({
+      anchorEl: event.currentTarget,
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      anchorEl: null,
+    });
+  };
+
   render() {
+    const { classes } = this.props;
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
+
     return (
       <div className="Pokemon-type-section">
         <Grid item xs={6} className="pokemon-type-grid-item">
           <Chip
-            avatar={<Avatar alt={this.props.type + ' icon'} src={this.state.icon} />}
+            avatar={<Avatar alt={this.props.type + ' icon'} src={this.state.typeStyle.icon} />}
             label={this.props.type}
-            onClick={handleClick}
             className="pokemon-type-chip"
-            style={{backgroundColor: this.state.chipColor}}
+            style={{ backgroundColor: this.state.typeStyle.chipColor }}
+            aria-owns={open ? 'simple-popper' : undefined}
+            aria-haspopup="true"
+            onClick={this.handleClick}
           />
+          <div>
+            <Popover
+              id="simple-popper"
+              open={open}
+              anchorEl={anchorEl}
+              onClose={this.handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              <Typography>The content of the Popover.</Typography>
+              <TypeEffectivenessSection type={this.props.type} />
+            </Popover>
+          </div>
         </Grid>
       </div>);
   }
