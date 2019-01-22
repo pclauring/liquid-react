@@ -200,7 +200,6 @@ class PokemonCard extends Component {
                 <img width="75px" src={this.props.sprites.front_shiny} alt="sprite front shiny" className="sprite-img" />
                 <img width="75px" src={this.props.sprites.back_shiny} alt="sprite back shiny" className="sprite-img" />
               </div>
-              <TypeEffectivenessSection type={this.props.types[0].type.name.toUpperCase()}/>
               <Typography align="center">Weight: {this.props.weight}</Typography>
               <Radar data={this.state} />
               <div className="add-stats-form">

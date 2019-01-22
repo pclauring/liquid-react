@@ -65,18 +65,18 @@ class TypeEffectivenessSection extends Component {
   }
   render() {
     return (<div className="TypeEffectivenessSection">
-    <Typography variant="title" gutterBottom>Double Damage</Typography>
+    <Typography variant="subtitle" gutterBottom>Double Damage</Typography>
       {this.state.typeEffectiveness.bonusDamage &&
        this.state.typeEffectiveness.bonusDamage.map(element => 
-      <Typography>{element}</Typography>)}
-      <Typography variant="title" gutterBottom>Half Damage</Typography>
+      <Typography variant="overline">{element}</Typography>)}
+      <Typography variant="subtitle" gutterBottom>Half Damage</Typography>
      {this.state.typeEffectiveness.halfDamage &&
        this.state.typeEffectiveness.halfDamage.map(element => 
-      <Typography>{element}</Typography>)}
-    <Typography variant="title" gutterBottom>No Damage</Typography>
+      <Typography variant="overline">{element}</Typography>)}
+    <Typography variant="subtitle" gutterBottom>No Damage</Typography>
     { this.state.typeEffectiveness.noEffect &&
       this.state.typeEffectiveness.noEffect.map(element => 
-      <Typography>{element}</Typography>)}
+      <Typography variant="overline">{element}</Typography>)}
       </div>
       );
   }

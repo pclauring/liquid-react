@@ -114,7 +114,7 @@ class PokemonType extends Component {
                 horizontal: 'center',
               }}
             >
-              <Typography>The content of the Popover.</Typography>
+              <Typography variant="title">{this.props.type} Attacks</Typography>
               <TypeEffectivenessSection type={this.props.type} />
             </Popover>
           </div>
