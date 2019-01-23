@@ -104,7 +104,7 @@ class PokemonCard extends Component {
     datasets: [
       {
         label: this.props.name.toUpperCase(),
-        backgroundColor: 'rgba(179,181,198,0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         //borderColor: 'rgba(179,181,198,1)',
         // pointBackgroundColor: 'rgba(179,181,198,1)',
         // pointBorderColor: '#fff',
@@ -144,7 +144,7 @@ class PokemonCard extends Component {
       prevState => ({
         datasets: prevState.datasets.concat({
           label: pokemon.name.toUpperCase(),
-          backgroundColor: 'rgba(179,181,198,0.2)',
+          backgroundColor:'rgba(0, 0, 0, 0)',
           // borderColor: 'rgba(179,181,198,1)',
           // pointBackgroundColor: 'rgba(179,181,198,1)',
           // pointBorderColor: '#fff',
@@ -202,9 +202,7 @@ class PokemonCard extends Component {
               </div>
               <Typography align="center">Weight: {this.props.weight}</Typography>
               <Radar data={this.state} />
-              <div className="add-stats-form">
-              <PokemonSelectForm onSubmit={this.addPokemonStats} buttonVariant={"outlined"} buttonTitle={"Compare Stats"}  />
-              </div>
+
             </CardContent>
             <CardActions>
               <Grid container spacing={24} direction="row" justify="center" alignItems="center">
@@ -218,9 +216,14 @@ class PokemonCard extends Component {
                       <Typography variant="overline" gutterBottom>Shape: {capitalize(this.state.speciesInfo.shape.name)}</Typography>
                       <Typography variant="overline" gutterBottom>Habitat: {capitalize(this.state.speciesInfo.habitat.name)}</Typography>
                       <Typography variant="overline" gutterBottom>Color: {capitalize(this.state.speciesInfo.color.name)}</Typography>
+                      <Typography variant="overline" gutterBottom>Weight: {this.props.weight}</Typography>
                     </Paper>
+
                   </div>
                 }
+                <div className="add-stats-form">
+                  <PokemonSelectForm onSubmit={this.addPokemonStats} buttonVariant={"outlined"} buttonTitle={"Compare Stats"} />
+                </div>
               </Grid>
             </CardActions>
           </Card>

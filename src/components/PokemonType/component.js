@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
 import Popover from '@material-ui/core/Popover';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TypeEffectivenessSection from '../TypeEffectivenessSection/component';
 import './PokemonType.css';
@@ -114,7 +113,6 @@ class PokemonType extends Component {
                 horizontal: 'center',
               }}
             >
-              <Typography variant="title">{this.props.type} Attacks</Typography>
               <TypeEffectivenessSection type={this.props.type} />
             </Popover>
           </div>

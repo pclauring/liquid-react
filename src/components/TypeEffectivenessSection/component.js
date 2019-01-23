@@ -16,6 +16,7 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import brown from '@material-ui/core/colors/brown';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import indigo from '@material-ui/core/colors/indigo';
+import './TypeEffectivenessSection.css';
 
 const getTypeColors = (type) => {
   if (type === 'FIRE') { return { color: orange[50], secondaryColor: orange[200] }; }
@@ -33,52 +34,55 @@ const getTypeColors = (type) => {
   else if (type === 'FLYING') { return { color: indigo[50], secondaryColor: indigo[200] }; }
   else if (type === 'PSYCHIC') { return { color: purple[50], secondaryColor: purple[200] }; }
   else if (type === 'BUG') { return { color: lime[50], secondaryColor: lime[200] }; }
-  else if (type === 'STEEL') { return { color: blueGrey[50], secondaryColor: blueGrey[200] }; }
+  else if (type === 'STEEL') { return { color: blueGrey[100], secondaryColor: blueGrey[200] }; }
   else if (type === 'ELECTRIC') { return { color: yellow[50], secondaryColor: yellow[200] }; }
   else if (type === 'GHOST') { return { color: deepPurple[50], secondaryColor: deepPurple[200] }; }
 }
 
 const getTypeAttackEffectiveness = (type) => {
-  if (type === 'FIRE') { return { bonusDamage: ['GRASS','BUG', 'STEEL', 'ICE'], halfDamage: ['ROCK', 'FIRE', 'WATER', 'DRAGON'], noEffect: [] }; }
-  else if (type === 'DARK') { return { bonusDamage: ['PSYCHIC','GHOST'], halfDamage: ['FIGHTING','DARK','FAIRY'], noEffect: []  }; }
-  else if (type === 'FAIRY') { return {bonusDamage: ['FIGHTING','DRAGON','DARK'], halfDamage: ['POISON','STEEL','FIRE'], noEffect: []}; }
-  else if (type === 'ICE') { return {  bonusDamage: ['FLYING','GROUND','GRASS','DRAGON'], halfDamage: ['STEEL','FIRE','WATER','ICE'], noEffect: []  }; }
-  else if (type === 'ROCK') { return { bonusDamage: ['FLYING','BUG','FIRE','ICE'], halfDamage: ['FIGHTING','GROUND', 'STEEL'], noEffect: []  }; }
-  else if (type === 'FIGHTING') { return { bonusDamage: ['NORMAL','ROCK','ICE','STEEL','DARK'], halfDamage: ['FLYING','POISON','FAIRY','PSYCHIC','BUG'], noEffect: ['GHOST']  }; }
-  else if (type === 'GROUND') { return {  bonusDamage: ['POISIN','ROCK','STEEL','FIRE','ELECTRIC'], halfDamage: ['BUG','GRASS'], noEffect: ['FLYING']  }; }
-  else if (type === 'POISON') { return { bonusDamage: ['GRASS','FAIRY'], halfDamage: ['POISON','GROUND','ROCK','GHOST'], noEffect: ['STEEL'] }; }
+  if (type === 'FIRE') { return { bonusDamage: ['GRASS', 'BUG', 'STEEL', 'ICE'], halfDamage: ['ROCK', 'FIRE', 'WATER', 'DRAGON'], noEffect: [] }; }
+  else if (type === 'DARK') { return { bonusDamage: ['PSYCHIC', 'GHOST'], halfDamage: ['FIGHTING', 'DARK', 'FAIRY'], noEffect: [] }; }
+  else if (type === 'FAIRY') { return { bonusDamage: ['FIGHTING', 'DRAGON', 'DARK'], halfDamage: ['POISON', 'STEEL', 'FIRE'], noEffect: [] }; }
+  else if (type === 'ICE') { return { bonusDamage: ['FLYING', 'GROUND', 'GRASS', 'DRAGON'], halfDamage: ['STEEL', 'FIRE', 'WATER', 'ICE'], noEffect: [] }; }
+  else if (type === 'ROCK') { return { bonusDamage: ['FLYING', 'BUG', 'FIRE', 'ICE'], halfDamage: ['FIGHTING', 'GROUND', 'STEEL'], noEffect: [] }; }
+  else if (type === 'FIGHTING') { return { bonusDamage: ['NORMAL', 'ROCK', 'ICE', 'STEEL', 'DARK'], halfDamage: ['FLYING', 'POISON', 'FAIRY', 'PSYCHIC', 'BUG'], noEffect: ['GHOST'] }; }
+  else if (type === 'GROUND') { return { bonusDamage: ['POISIN', 'ROCK', 'STEEL', 'FIRE', 'ELECTRIC'], halfDamage: ['BUG', 'GRASS'], noEffect: ['FLYING'] }; }
+  else if (type === 'POISON') { return { bonusDamage: ['GRASS', 'FAIRY'], halfDamage: ['POISON', 'GROUND', 'ROCK', 'GHOST'], noEffect: ['STEEL'] }; }
   else if (type === 'DRAGON') { return { bonusDamage: ['DRAGON'], halfDamage: ['STEEL'], noEffect: ['FAIRY'] }; }
-  else if (type === 'GRASS') { return { bonusDamage: ['GROUND','ROCK','WATER'], halfDamage: ['FLYING','POISON','BUG','STEEL','FIRE','GRASS','DRAGON'], noEffect: ['GHOST']  }; }
-  else if (type === 'WATER') { return { bonusDamage: ['ROCK','GROUND','FIRE'], halfDamage: ['WATER','GRASS','DRAGON'], noEffect: []}; }
-  else if (type === 'NORMAL') { return { bonusDamage: [], halfDamage: ['ROCK', 'STEEL'], noEffect: ['GHOST']  }; }
-  else if (type === 'FLYING') { return { bonusDamage: ['FLYING','BUG','GRASS'], halfDamage: ['ROCK', 'STEEL','ELECTRIC'], noEffect: []  }; }
-  else if (type === 'PSYCHIC') { return { bonusDamage: ['FIGHTING','POISON'], halfDamage: ['STEEL','PSYCHIC'], noEffect: ['DARK'] }; }
-  else if (type === 'BUG') { return { bonusDamage: ['GRASS','PSYCHIC','DARK'], halfDamage: ['FIGHTING','FLYING','POISON','GHOST','STEEL','FIRE','FAIRY'], noEffect: []  }; }
-  else if (type === 'STEEL') { return {  bonusDamage: ['ROCK','ICE','FAIRY'], halfDamage: ['STEEL','FIRE','WATER','ELECTRIC'], noEffect: [] }; }
-  else if (type === 'ELECTRIC') { return {  bonusDamage: ['FLYING','WATER'], halfDamage: ['GRASS','ELECTRIC','DRAGON'], noEffect: ['GROUND']}; }
-  else if (type === 'GHOST') { return { bonusDamage: ['GHOST','PSYCHIC'], halfDamage: ['DARK'], noEffect: ['NORMAL']  }; }
+  else if (type === 'GRASS') { return { bonusDamage: ['GROUND', 'ROCK', 'WATER'], halfDamage: ['FLYING', 'POISON', 'BUG', 'STEEL', 'FIRE', 'GRASS', 'DRAGON'], noEffect: ['GHOST'] }; }
+  else if (type === 'WATER') { return { bonusDamage: ['ROCK', 'GROUND', 'FIRE'], halfDamage: ['WATER', 'GRASS', 'DRAGON'], noEffect: [] }; }
+  else if (type === 'NORMAL') { return { bonusDamage: [], halfDamage: ['ROCK', 'STEEL'], noEffect: ['GHOST'] }; }
+  else if (type === 'FLYING') { return { bonusDamage: ['FLYING', 'BUG', 'GRASS'], halfDamage: ['ROCK', 'STEEL', 'ELECTRIC'], noEffect: [] }; }
+  else if (type === 'PSYCHIC') { return { bonusDamage: ['FIGHTING', 'POISON'], halfDamage: ['STEEL', 'PSYCHIC'], noEffect: ['DARK'] }; }
+  else if (type === 'BUG') { return { bonusDamage: ['GRASS', 'PSYCHIC', 'DARK'], halfDamage: ['FIGHTING', 'FLYING', 'POISON', 'GHOST', 'STEEL', 'FIRE', 'FAIRY'], noEffect: [] }; }
+  else if (type === 'STEEL') { return { bonusDamage: ['ROCK', 'ICE', 'FAIRY'], halfDamage: ['STEEL', 'FIRE', 'WATER', 'ELECTRIC'], noEffect: [] }; }
+  else if (type === 'ELECTRIC') { return { bonusDamage: ['FLYING', 'WATER'], halfDamage: ['GRASS', 'ELECTRIC', 'DRAGON'], noEffect: ['GROUND'] }; }
+  else if (type === 'GHOST') { return { bonusDamage: ['GHOST', 'PSYCHIC'], halfDamage: ['DARK'], noEffect: ['NORMAL'] }; }
 }
 
 class TypeEffectivenessSection extends Component {
   state = {
-    typeEffectiveness: getTypeAttackEffectiveness(this.props.type)
+    typeEffectiveness: getTypeAttackEffectiveness(this.props.type),
+    typeTheme: getTypeColors(this.props.type)
   }
   render() {
-    return (<div className="TypeEffectivenessSection">
-    <Typography variant="subtitle" gutterBottom>Double Damage</Typography>
+    return (<div className="type-effectiveness-content">
+      <Typography variant="title" style={{backgroundColor: this.state.typeTheme.color}}>{this.props.type} Attacks</Typography>
+      <hr />
+      <Typography variant="subtitle" gutterBottom>Double Damage</Typography>
       {this.state.typeEffectiveness.bonusDamage &&
-       this.state.typeEffectiveness.bonusDamage.map(element => 
-      <Typography variant="overline">{element}</Typography>)}
+        this.state.typeEffectiveness.bonusDamage.map(element =>
+          <Typography variant="overline" style={{backgroundColor: getTypeColors(element).color}}>{element}</Typography>)}
       <Typography variant="subtitle" gutterBottom>Half Damage</Typography>
-     {this.state.typeEffectiveness.halfDamage &&
-       this.state.typeEffectiveness.halfDamage.map(element => 
-      <Typography variant="overline">{element}</Typography>)}
-    <Typography variant="subtitle" gutterBottom>No Damage</Typography>
-    { this.state.typeEffectiveness.noEffect &&
-      this.state.typeEffectiveness.noEffect.map(element => 
-      <Typography variant="overline">{element}</Typography>)}
-      </div>
-      );
+      {this.state.typeEffectiveness.halfDamage &&
+        this.state.typeEffectiveness.halfDamage.map(element =>
+          <Typography variant="overline" style={{backgroundColor: getTypeColors(element).color}}>{element}</Typography>)}
+      <Typography variant="subtitle" gutterBottom>No Damage</Typography>
+      {this.state.typeEffectiveness.noEffect &&
+        this.state.typeEffectiveness.noEffect.map(element =>
+          <Typography variant="overline" style={{backgroundColor: getTypeColors(element).color}}>{element}</Typography>)}
+    </div>
+    );
   }
 }
 
