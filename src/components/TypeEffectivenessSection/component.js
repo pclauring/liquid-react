@@ -67,17 +67,17 @@ class TypeEffectivenessSection extends Component {
   }
   render() {
     return (<div className="type-effectiveness-content">
-      <Typography variant="title" style={{backgroundColor: this.state.typeTheme.color}}>{this.props.type} Attacks</Typography>
+      <Typography variant="title">{this.props.type} Attacks</Typography>
       <hr />
-      <Typography variant="subtitle" gutterBottom>Double Damage</Typography>
+      <Typography variant="subtitle1" gutterBottom>Double Damage</Typography>
       {this.state.typeEffectiveness.bonusDamage &&
         this.state.typeEffectiveness.bonusDamage.map(element =>
           <Typography variant="overline" style={{backgroundColor: getTypeColors(element).color}}>{element}</Typography>)}
-      <Typography variant="subtitle" gutterBottom>Half Damage</Typography>
+      <Typography variant="subtitle1" gutterBottom>Half Damage</Typography>
       {this.state.typeEffectiveness.halfDamage &&
         this.state.typeEffectiveness.halfDamage.map(element =>
           <Typography variant="overline" style={{backgroundColor: getTypeColors(element).color}}>{element}</Typography>)}
-      <Typography variant="subtitle" gutterBottom>No Damage</Typography>
+      <Typography variant="subtitle1" gutterBottom>No Damage</Typography>
       {this.state.typeEffectiveness.noEffect &&
         this.state.typeEffectiveness.noEffect.map(element =>
           <Typography variant="overline" style={{backgroundColor: getTypeColors(element).color}}>{element}</Typography>)}

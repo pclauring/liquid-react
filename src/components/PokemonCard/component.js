@@ -84,24 +84,24 @@ const pushTypes = (array) => {
 }
 
 const getType = (type) => {
-  if (type === 'FIRE') { return { color: orange[50], secondaryColor: orange[200] }; }
-  else if (type === 'DARK') { return { color: grey[300], secondaryColor: grey[500] }; }
-  else if (type === 'FAIRY') { return { color: pink[50], secondaryColor: pink[300] }; }
-  else if (type === 'ICE') { return { color: lightBlue[50], secondaryColor: lightBlue[200] }; }
-  else if (type === 'ROCK') { return { color: brown[100], secondaryColor: brown[300] }; }
-  else if (type === 'FIGHTING') { return { color: deepOrange[100], secondaryColor: deepOrange[300] }; }
-  else if (type === 'GROUND') { return { color: orange[100], secondaryColor: orange[300] }; }
-  else if (type === 'POISON') { return { color: purple[100], secondaryColor: purple[300] }; }
-  else if (type === 'DRAGON') { return { color: indigo[100], secondaryColor: indigo[300] }; }
-  else if (type === 'GRASS') { return { color: green[50], secondaryColor: green[200] }; }
-  else if (type === 'WATER') { return { color: blue[50], secondaryColor: blue[200] }; }
-  else if (type === 'NORMAL') { return { color: grey[50], secondaryColor: grey[200] }; }
-  else if (type === 'FLYING') { return { color: indigo[50], secondaryColor: indigo[200] }; }
-  else if (type === 'PSYCHIC') { return { color: purple[50], secondaryColor: purple[200] }; }
-  else if (type === 'BUG') { return { color: lime[50], secondaryColor: lime[200] }; }
-  else if (type === 'STEEL') { return { color: blueGrey[50], secondaryColor: blueGrey[200] }; }
-  else if (type === 'ELECTRIC') { return { color: yellow[50], secondaryColor: yellow[200] }; }
-  else if (type === 'GHOST') { return { color: deepPurple[50], secondaryColor: deepPurple[200] }; }
+  if (type === 'FIRE') { return { color: orange[50], secondaryColor: orange[300] }; }
+  else if (type === 'DARK') { return { color: grey[300], secondaryColor: grey[600] }; }
+  else if (type === 'FAIRY') { return { color: pink[50], secondaryColor: pink[400] }; }
+  else if (type === 'ICE') { return { color: lightBlue[50], secondaryColor: lightBlue[300] }; }
+  else if (type === 'ROCK') { return { color: brown[100], secondaryColor: brown[400] }; }
+  else if (type === 'FIGHTING') { return { color: deepOrange[100], secondaryColor: deepOrange[400] }; }
+  else if (type === 'GROUND') { return { color: orange[100], secondaryColor: orange[400] }; }
+  else if (type === 'POISON') { return { color: purple[100], secondaryColor: purple[400] }; }
+  else if (type === 'DRAGON') { return { color: indigo[100], secondaryColor: indigo[400] }; }
+  else if (type === 'GRASS') { return { color: green[50], secondaryColor: green[300] }; }
+  else if (type === 'WATER') { return { color: blue[50], secondaryColor: blue[300] }; }
+  else if (type === 'NORMAL') { return { color: grey[50], secondaryColor: grey[400] }; }
+  else if (type === 'FLYING') { return { color: indigo[50], secondaryColor: indigo[300] }; }
+  else if (type === 'PSYCHIC') { return { color: purple[50], secondaryColor: purple[300] }; }
+  else if (type === 'BUG') { return { color: lime[50], secondaryColor: lime[300] }; }
+  else if (type === 'STEEL') { return { color: blueGrey[50], secondaryColor: blueGrey[300] }; }
+  else if (type === 'ELECTRIC') { return { color: yellow[50], secondaryColor: yellow[300] }; }
+  else if (type === 'GHOST') { return { color: deepPurple[50], secondaryColor: deepPurple[300] }; }
 }
 
 class PokemonCard extends Component {
