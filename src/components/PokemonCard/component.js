@@ -56,6 +56,15 @@ const mapAbilities = (array) => {
   return statLabels;
 };
 
+const insertComparisonData = (prevData, newData) => {
+      if(prevData.length > 1){
+        prevData[1] = newData;
+        return prevData;
+      } else {
+        return prevData.concat(newData);
+      }
+}
+
 const mapStatValues = (array) => {
   var statValues = [];
   array.forEach(element => {
@@ -142,19 +151,18 @@ class PokemonCard extends Component {
   addPokemonStats = (pokemon) => {
     this.setState(
       prevState => ({
-        datasets: prevState.datasets.concat({
-          label: pokemon.name.toUpperCase(),
-          backgroundColor:'rgba(0, 0, 0, 0)',
-          // borderColor: 'rgba(179,181,198,1)',
-          // pointBackgroundColor: 'rgba(179,181,198,1)',
-          // pointBorderColor: '#fff',
-          borderColor: getType(pushTypes(pokemon.types)[0]).secondaryColor,
-          pointBackgroundColor: getType(pushTypes(pokemon.types)[0]).color,
-          pointBorderColor: getType(pushTypes(pokemon.types)[0]).secondaryColor,
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(179,181,198,1)',
-          data: mapStatValues(pokemon.stats)
-        })
+        datasets: insertComparisonData(prevState.datasets,
+          {
+            label: pokemon.name.toUpperCase(),
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            borderColor: getType(pushTypes(pokemon.types)[0]).secondaryColor,
+            pointBackgroundColor: getType(pushTypes(pokemon.types)[0]).color,
+            pointBorderColor: getType(pushTypes(pokemon.types)[0]).secondaryColor,
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(179,181,198,1)',
+            data: mapStatValues(pokemon.stats)
+          } ) 
+        // prevState.datasets.concat(
       }));
   };
 
